@@ -58,13 +58,29 @@ h2{
   
   box-sizing: border-box;  
 }
+a{
+    color:white;
+    display:inline-block;
+text-decoration:none;
+display:inline-block;
+color:#ffff;
+border-right:1px solid #ffff;
+padding-right:1vw;
+padding-left:1vw
+        }
+      a:hover{
+    color: black;
+    text-decoration: none;
+    background-color: white;
+    border-radius:5px;
+      }
 </style>
 <body>
     <center>
     <h1>Bienvenue..</h1>
     <h2>Vous pouvez ajouter une photo ou modifier vos informations</h2>
        <div>
-           <form action="editcnx.php" method="POST" enctype="multipart/form-data">
+           <form action="profile.php" method="POST" enctype="multipart/form-data">
       <table class=t1 >
       <tr>
               <td>Ajouter une photo: </td>
@@ -93,14 +109,15 @@ h2{
           </tr>
           
       </table>
-      <input id="btn" type="submit" name="modifier" value="modifier le profile">
+      <input id="btn" type="submit" name="modifier" value="Validé">
       </form>
       </div>
+      <a href="liste.php">liste des étudiants</a>
+      <a href="logout.php">Déconnexion</a><br>
       
       </center>
 
-      vous trouverez votre page <a href="profil.php">Profile</a> ici <br>
-<a href="logout.php">Déconnexion</a></li>
+      
 
 </body>
 
