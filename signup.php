@@ -42,11 +42,11 @@ body{
 </style>
 <body>
     <center>
-    <h1>SIGN UP</h1>
+    <h1>Ajouter un étudiant</h1>
     </center>
     <div>
     <table >
-        <form action="signupcx.php" method="POST">
+        <form action="signupcnx.php" method="POST">
         
         
         <tr>
@@ -76,7 +76,7 @@ body{
               
             </tr><pre></pre>
             
-            <td><input type="submit" name="signup" value=signup></td><pre></pre>
+            <td><input type="submit" name="signup" value=Ajouter></td><pre></pre>
             <td><a href="login.php">cklik to login</a></td>
         </form>
 
