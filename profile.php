@@ -1,7 +1,48 @@
 <?php
 session_start();
-?>
-<!DOCTYPE html>
+
+if(isset($_POST['modifier'])){
+  $conn=mysqli_connect('localhost','root','','ensat');
+    if(!$conn){
+        echo " erreur!".mysqli_error();
+    }
+    $db="SELECT*FROM eleves WHERE Email='".$_SESSION['Email']."'";
+    if(mysqli_query($conn,$db)){
+    
+    $profileimage= $_FILES['photo']['name'];
+    $newcne=$_POST['cne'];
+    $newnom=$_POST['nom'];
+    $newprenom=$_POST['prenom'];
+    $newEmail=$_POST['Email'];
+    $newpassword=$_POST['password'];
+    
+   
+    $sql = "UPDATE eleves SET image='$profileimage',cne='$newcne' ,nom=' $newnom',prénom='$newprenom', Email= '$newEmail' , password= '$newpassword' WHERE Email='".$_SESSION['Email']."'";
+    $result=mysqli_query($conn,$sql);
+    if ($result) {
+      
+     $_SESSION['cne'] =$newcne;
+     $_SESSION['nom'] =$newnom;
+     $_SESSION['prenom'] =$newprenom;
+     $_SESSION['Email'] =$newEmail;
+     $_SESSION['password'] =$newpassword;
+     
+      if (is_uploaded_file($_FILES['photo']['tmp_name'])){
+
+              @move_uploaded_file($_FILES['photo']['tmp_name'],$profileimage);
+               echo "Profile updated successfully";
+              } else {
+                  echo "Error updating record: " . $conn->error;
+                     }
+     }                
+    }
+  $sel="SELECT*FROM eleves WHERE Email='".$_SESSION['Email']."'";
+  $res=mysqli_query($conn,$sel);
+  
+  while($row=mysqli_fetch_array($res)){
+    
+    ?>
+    <!DOCTYPE html>
     <html lang="en">
     <head>
       <meta charset="UTF-8">
@@ -11,24 +52,40 @@ session_start();
     </head>
     <style>
       .all{
-        border:solid 1px;
-        width: 400px;
-        margin:20px;
-        padding:10px;
-        background-color:#CDDBE0;
-        border-radius: 13px;
-      }
-      img{
-        border-radius: 100%;
-      }
-      body{
-        background:linear-gradient(#08203e,#557c93);
-        
-      }
-      h1{
-        color:#ffff;
-      }
+    border:solid 1px;
+    width: 400px;
+    margin:20px;
+    padding:10px;
+    background-color:#CDDBE0;
+    border-radius: 13px;
+  }
+  img{
+    border-radius: 100%;
+  }
+  a{
+color:white;
+display:inline-block;
+text-decoration:none;
+display:inline-block;
+color:#ffff;
+border-right:1px solid #ffff;
+padding-right:1vw;
+padding-left:1vw
+    }
+  a:hover{
+color: black;
+text-decoration: none;
+background-color: white;
+border-radius:5px;
+  }
+  body{
+    background:linear-gradient(#08203e,#557c93);
     
+  }
+  h1{
+    color:#ffff;
+  }
+
     </style>
     <body>
     <center>
@@ -39,7 +96,6 @@ session_start();
       </div>
               CNE:
               <?=$_SESSION['cne']?><br><hr>
-  
   
               NOM: 
               <?=$_SESSION['nom']?><br><hr>
@@ -53,15 +109,18 @@ session_start();
               MOT DE PASSE: 
               <?=$_SESSION['password']?><br><hr>
     </div>
-         
-
-     
-     <a href="liste.php" >Liste des étudiants</a><br>
+     <a href="liste.php" >Liste des étudiants</a>
+     <a href="bienvenue.php">Retour </a>
      <a href="logout.php">Déconnexion</a><br>
-     <a href="bienvenue.php">retour</a>
+     
  
               </center>
 
     </body>
-
-    </html>
+     </html>
+  <?php
+   }   
+?>
+  <?php
+   }   
+?>
