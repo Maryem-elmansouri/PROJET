@@ -39,7 +39,7 @@ body{
 <body>
     <div>
     <table >
-        <form action="cnx.php" method="POST">
+        <form action="connexion.php" method="POST">
             <tr>
             <td >Login</td>
             <td><input type="text" name="Email" placeholder="Email"></td><pre></pre>
